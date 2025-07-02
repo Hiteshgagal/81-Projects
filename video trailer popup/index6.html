@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Trailer</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .image-container{
+            background-image: url(img/thumb-1920-597965.jpg);
+            height: 100vh;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        img{
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            width: 100px;
+            cursor: pointer;
+            animation: bounce;
+            animation-duration: 1s;
+            animation-timing-function: ease-in;
+            animation-iteration-count: infinite;
+        }
+        @keyframes bounce {
+            0%{
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+            }
+            50%{
+                transform: translateY(-20px);
+                animation-timing-function: ease-in;
+            }
+            110%{
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+            }
+            
+        }
+
+        .trailer-container{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #000;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.7s;
+        }
+        .trailer-container video{
+            position: relative;
+            max-width: 900px;
+            outline: none;
+        }
+        .close-icon{
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #f26415;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: sans-serif;
+            padding: 10px;
+            border-radius: 100%;
+                }
+
+        .active.trailer-container{
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        @media (max-width: 991px) {
+            .trailer-container video{
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="img/play.png" class="btn" alt="">
+    </div>
+
+    <div class="trailer-container active">
+       <video src="img/trailer.mp4" controls></video>
+       <p class="close-icon">X</p>
+    </div>
+    <script>
+        const btn = document.querySelector(".btn")
+        const closeIcon = document.querySelector(".close-icon")
+        const trailerContainer = document.querySelector(".trailer-container")
+        const video = document.querySelector("video")
+
+        btn.addEventListener("click", ()=>{
+            trailerContainer.classList.remove("active")
+        })
+        closeIcon.addEventListener("click", ()=>{
+            trailerContainer.classList.add("active")
+            video.pause()
+            video.currentTime = 0;
+        })
+    </script>
+</body>
+</html>
