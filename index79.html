@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ff6e00;
+            padding: 5px;
+            width: 300px;
+            height: 50px;
+            border-radius: 50px;
+            margin: 10px;
+            position: relative;
+            transition: width 1.5s;
+        }
+
+        .input {
+            margin: 10px 50px;
+            margin-left: 20px;
+            width: 100%;
+            color: #ff6e00;
+            border: none;
+            background: transparent;
+            outline: none;
+            transition-delay: 0.5s;
+        }
+
+        .magnifier {
+            position: absolute;
+            right: 15px;
+            width: 25px;
+            text-align: center;
+            margin: 0 auto;
+            cursor: pointer;
+            color: #ffa31a;
+        }
+
+        ul li {
+            display: inline;
+            margin-left: 40px;
+            font-family: sans-serif;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 60%;
+            padding: 3rem;
+            box-shadow: 10px 10px 40px 5px #e0e0e0;
+            margin-top: 5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-container h1 {
+            font-family: sans-serif;
+            font-size: 2rem;
+            color: #2c2c2c;
+        }
+
+        .content-container p {
+            font-family: sans-serif;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            color: #444444;
+            width: 26rem;
+        }
+
+        .img {
+            transform: translateX(-120px);
+            margin-top: 1rem;
+            width: 350px;
+            height: 350px;
+            border-radius: 300px;
+            background: url("https://images.unsplash.com/photo-1600289031464-74d374b64991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1075&q=80");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: conver;
+        }
+
+        .ingredients {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 5rem;
+            padding: 50px;
+        }
+
+        .ingredients span {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .ing {
+            padding: 10px 20px;
+            border: 2px solid #ff6e00;
+            color: #ff6e00;
+            font-family: sans-serif;
+            border-radius: 100px;
+        }
+
+        .main-btn {
+            background: transparent;
+            border: none;
+            border: 2px solid #ffa31a;
+            padding: 10px;
+            color: #ffa31a;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <form class="input-container">
+            <input type="text" class="input" placeholder="Search ..." />
+            <i class="fa-solid fa-magnifying-glass magnifier"></i>
+        </form>
+
+        <ul>
+            <li>Breakfast</li>
+            <li>Launch</li>
+            <li>Dinner</li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="img"></div>
+
+            <div class="content-container">
+                <h1 class="title">Food Name</h1>
+                <p class="info">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
+                    nostrum consequatur, nulla explicabo vero nesciunt architecto
+                    officiis eius ullam alias.
+                </p>
+                <button class="main-btn">$20 - Order Now</button>
+            </div>
+        </div>
+    </main>
+
+    <section class="ingredients"></section>
+
+    <script>
+        const searchMeal = async (e) => {
+            e.preventDefault();
+            const input = document.querySelector(".input");
+            const title = document.querySelector(".title");
+            const info = document.querySelector(".info");
+            const img = document.querySelector(".img");
+            const ingredientsOutput = document.querySelector(".ingredients");
+
+            const showMealInfo = (meal) => {
+                //console.log(meal)
+                const { strMeal, strMealThumb, strInstructions } = meal;
+                title.textContent = strMeal;
+                img.style.backgroundImage = `url(${strMealThumb})`;
+                info.textContent = strInstructions;
+
+                const ingredients = []
+                for (let i = 1; i <= 20; i++) {
+                    if (meal[`strIngredient${i}`]) {
+
+                        ingredients.push(
+                            `${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`
+                        );
+                    } else { break; }
+                }
+                const html =
+                    `   <span>${ingredients
+                        .map((ing) => `<li class="ing">${ing}</li>`)
+                        .join("")}</span>
+                      `;
+
+                ingredientsOutput.innerHTML = html
+
+            }
+            const showAllert = () => {
+                alert('Meal not found : (')
+            }
+
+            const fetchMealData = async (val) => {
+                const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${val}`);
+
+                const { meals } = await res.json()
+                return meals
+
+            }
+
+            //get th user value
+            const val = input.value.trim()
+            if (val) {
+                const meals = await fetchMealData(val)
+
+                if (!meals) {
+                    showAllert();
+                    return;
+                }
+                meals.forEach(showMealInfo);
+
+            } else {
+                alert("Please try searching for meal :)")
+            }
+        }
+        const form = document.querySelector("form")
+        form.addEventListener("submit", searchMeal)
+        const magnifier = document.querySelector(".magnifier")
+        magnifier.addEventListener("click", searchMeal)
+
+
+    </script>
+
+</body>
+
+</html>

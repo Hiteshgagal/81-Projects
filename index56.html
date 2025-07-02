@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            font-family: sans-serif;
+        }
+
+        :root {
+            --main-color: rgb(7, 7, 55);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--main-color);
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+        }
+
+        .container h2 {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 26px;
+            color: var(--main-color);
+        }
+
+        input {
+            padding: 20px;
+            user-select: none;
+            height: 50px;
+            width: 400px;
+            border: none;
+            outline: none;
+            border: 2px solid var(--main-color);
+            font-size: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        button {
+            font-size: 15px;
+            margin-top: 40px;
+            border: 2px solid var(--main-color);
+            width: 155px;
+            height: 50px;
+            text-align: center;
+            background-color: var(--main-color);
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Random Password Generator</h2>
+        <input type="text" placeholder="Create a Password" id="password" />
+        <div class="buttons">
+            <button class="btn1">Generate</button>
+            <button class="btn2">Copy</button>
+        </div>
+    </div>
+
+    <script>
+        const genBtn = document.querySelector(".btn1")
+        const copyBtn = document.querySelector(".btn2")
+
+
+         genBtn.addEventListener("click", () => genPassword());
+         copyBtn.addEventListener("click", () => copyPassword());
+
+        function genPassword() {
+            let chars =
+                "0123456789abcdefghijklmnopqristuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            passwordLength = 10;
+            password = "";
+
+            for (let i = 0; i <= passwordLength; i++) {
+                let randomNumber = Math.floor(Math.random() * chars.length);
+                password += chars.substring(randomNumber, randomNumber + 1);
+            }
+            document.getElementById("password").value = password;
+          //  console.log(password)
+    
+        }
+       
+        
+
+        function copyPassword() {
+            let copyText = document.getElementById("password");
+            copyText.select();
+            document.execCommand("copy");
+        }
+    </script>
+
+</body>
+
+</html>

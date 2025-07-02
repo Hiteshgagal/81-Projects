@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Background</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .container {
+            width: 40%;
+            height: 40%;
+            background: #1c1c1c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container input {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            width: 80%;
+            outline: none;
+        }
+
+        .container button {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            background: crimson;
+            width: 150px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .background-image {
+            background-image: url("https://images8.alphacoders.com/601/thumb-1920-601705.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+            top: -20px;
+            bottom: -20px;
+            left: -20px;
+            right: -20px;
+            z-index: -1;
+            filter: blur(20px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image"></div>
+
+    <div class="container">
+        <input type="email" id="email" placeholder="Enter Email" />
+        <input type="password" id="password" placeholder="Enter Password" />
+        <button type="submit">Submit</button>
+    </div>
+
+    <script>
+
+        const password = document.getElementById("password");
+        const bg = document.querySelector(".background-image");
+
+        password.addEventListener("input", (e) => {
+            const input = e.target.value;
+         //   console.log(input)
+            const length = input.length;
+          //  console.log(length)
+            const blurness = 20 - length * 2;
+          //  console.log(blurness)
+            bg.style.filter = `blur(${blurness}px)`;
+        });
+
+
+    </script>
+
+</body>
+
+</html>

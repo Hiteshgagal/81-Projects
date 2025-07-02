@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --main-color: #dc143c;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgb(7, 7, 20);
+        }
+
+        .gray-heart {
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        .gray-heart::before,
+        .gray-heart::after {
+            content: "";
+            background-color: #fff;
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            position: absolute;
+
+        }
+
+        .gray-heart::after {
+            top: 0px;
+            left: 50px;
+        }
+        .gray-heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+
+        .red-heart {
+            background-color: var(--main-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            visibility: hidden;
+            transform: rotate(-45deg);
+        }
+
+        .red-heart::before,
+        .red-heart::after {
+            content: "";
+            background-color: var(--main-color);
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            position: absolute;
+        }
+
+        .red-heart::after {
+            top: 0;
+            left: 50px;
+        }
+        .red-heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+
+        .animation {
+            animation: pop 0.9s linear;
+            visibility: visible;
+        }
+
+        .fill-color {
+            background-color: var(--main-color);
+        }
+
+        @keyframes pop {
+            100% {
+                transform: scale(1.7) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gray-heart"></div>
+    <div class="red-heart"></div>
+    <script>
+        const greyHeart = document.querySelector(".gray-heart")
+        const redHeart = document.querySelector(".red-heart")
+
+        greyHeart.addEventListener("click", () => {
+            redHeart.classList.add("animation")
+            greyHeart.classList.add("fill-color")
+        })
+        redHeart.addEventListener("click", () => {
+            redHeart.classList.remove("animation")
+            greyHeart.classList.remove("fill-color")
+        })
+    </script>
+</body>
+
+</html>

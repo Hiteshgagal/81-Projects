@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookList App</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #080809;
+            background: linear-gradient(blueviolet, rgb(82, 5, 154));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            height: 600px;
+            padding: 20px;
+            color: white;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 4px;
+            margin-bottom: 20px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .table {
+            background: crimson;
+            width: 100%;
+        }
+
+        .table-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        #book-list {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            overflow: hidden;
+            word-wrap: break-word;
+            background: #fff;
+            color: #000;
+        }
+
+        #book-list>section {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: space-around;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .btn {
+            background: deeppink;
+            border: none;
+            color: #fff;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <form id="book-form">
+            <div>
+                <label for="title">Book Title</label>
+                <input type="text" id="title" />
+            </div>
+            <div>
+                <label for="author">Book Author</label>
+                <input type="text" id="author" />
+            </div>
+            <div>
+                <label for="year">Published Year</label>
+                <input type="number" id="year" />
+            </div>
+            <button type="submit" class="btn">Add Book</button>
+        </form>
+
+        <section class="table">
+            <section class="table-section">
+                <div>Title</div>
+                <div>Author</div>
+                <div>Year</div>
+            </section>
+
+            <section id="book-list"></section>
+        </section>
+    </section>
+
+    <script>
+        const title = document.getElementById("title");
+        const author = document.getElementById("author");
+        const year = document.getElementById("year");
+        const bookList = document.getElementById("book-list");
+        const btn = document.querySelector(".btn");
+
+        btn.addEventListener("click", function(e){
+          e.preventDefault()
+
+          if(title.value =="" && author.value=="" && year.value==""){
+            alert("fill the form")
+          }else{
+            const newRow = document.createElement("section")
+
+            const newTitle = document.createElement("div")
+            newTitle.innerHTML  = title.value;
+            newRow.appendChild(newTitle)
+
+            const newAuthor = document.createElement("div")
+             newAuthor.innerHTML  = author.value;
+            newRow.appendChild(newAuthor)
+
+            const newYear = document.createElement("div")
+            newYear.innerHTML  = year.value;
+            newRow.appendChild(newYear)
+
+            bookList.appendChild(newRow)
+          }
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --main-color: #161a1d;
+            --primary-color: #7289da;
+            --gray-color: #4f4f4f;
+        }
+
+        body {
+            background-color: var(--main-color);
+        }
+
+        /* Form */
+        form {
+            border: 2px solid rgba(255, 255, 255, 0.224);
+            border-radius: 5px;
+            width: 30%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1.2;
+            margin-left: 60px;
+            margin-top: 50px;
+        }
+
+        form input {
+            padding: 6px;
+            width: 230px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 230px;
+            background: var(--primary-color);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .already {
+            margin-top: 20px;
+        }
+
+        form p {
+            font-family: sans-serif;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .input-container p.msg {
+            visibility: hidden;
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+
+        .input-container.error p.msg {
+            visibility: visible;
+        }
+
+        img {
+            width: 51%;
+            position: absolute;
+            top: 60px;
+            right: 10%;
+        }
+
+        .content h1 {
+            position: absolute;
+            top: 45%;
+            right: 38%;
+            font-size: 5rem;
+            color: #fff;
+        }
+
+        .input-container.error input {
+            border-color: red;
+        }
+
+        .input-container.success input {
+            border-color: rgb(97, 249, 97);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Form -->
+    <section class="container">
+        <form>
+            <div class="input-container">
+                <input type="text" placeholder="Name*" class="username" id="username" />
+                <p class="user-msg msg">error message</p>
+            </div>
+
+            <div class="input-container">
+                <input type="email" placeholder="Email Address*" class="email" id="email" />
+                <p class="email-msg msg">error message</p>
+            </div>
+            <div class="input-container">
+                <input type="password" placeholder="Password*" class="password1" id="password1" />
+                <p class="password1-msg msg">error message</p>
+            </div>
+            <div class="input-container">
+                <input type="password" placeholder="Confirm Password*" id="password2" class="password2" />
+                <p class="password2-msg msg">error message</p>
+            </div>
+            <input type="submit" value="Submit" class="submit" />
+            <p class="already">Already have an account? <a href="#">Login</a></p>
+        </form>
+        <!-- Image / Content -->
+        <div class="content">
+            <img
+                src="https://noblewoodgardenstore.ie/wp-content/uploads/2021/12/malvestida-magazine-DMl5gG0yWWY-unsplash-edited.jpg" />
+            <h1>
+                Shoe <br />
+                Palace
+            </h1>
+        </div>
+    </section>
+    <script>
+        const username = document.querySelector(".username");
+        const email = document.querySelector(".email");
+        const password1 = document.querySelector(".password1");
+        const password2 = document.querySelector(".password2");
+        const submit = document.querySelector(".submit");
+
+        const usernameMessage  =document.querySelector(".user-msg")
+        const emailMessage  =document.querySelector(".email-msg")
+        const password1Message  =document.querySelector(".password1-msg")
+        const password2Message  =document.querySelector(".password2-msg")
+
+        submit.addEventListener("click", (e)=>{
+            e.preventDefault();
+
+            if(username===""&& email==="" && password1==="" && password2==="" ){
+                alert("fill the form")
+            }
+
+            if(username.value === ""){
+                showMessage(usernameMessage, "Rong", "#ff0000")
+            }else{
+                showMessage(usernameMessage, "Right", "#4bb543")
+            }
+
+            if(email.value === ""){
+                showMessage(emailMessage, "Rong", "#ff0000")
+            }else{
+                showMessage(emailMessage, "Right", "#4bb543")
+            }
+            if(password1.value === ""){
+                showMessage(password1Message, "Rong", "#ff0000")
+            }else{
+                showMessage(password1Message, "Right", "#4bb543")
+            }
+            if(password2.value === ""){
+                showMessage(password2Message, "Rong", "#ff0000")
+            }else if(password1.value !== password2.value){
+                showMessage(password2Message, "not match", "#ff0000")
+            }
+            else{
+                showMessage(password2Message, "Right", "#4bb543")
+            }
+        })
+
+        function showMessage(element, msg, color){
+            element.style.visibility = "visible";
+            element.textContent = msg;
+            element.style.color = color;
+            element.previousElementSibling.style.border = `2px solid ${color}`;
+        }
+    </script>
+
+</body>
+
+</html>

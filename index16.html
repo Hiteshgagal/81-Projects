@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Menu Select</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        header {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(#0093e9, #80d0c7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .selector {
+            width: 350px;
+        }
+
+        #selectField {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #selectField img {
+            width: 12px;
+            transition: transform 0.5s;
+        }
+
+        #list {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .options {
+            width: 100%;
+            position: relative;
+            padding: 15px 0 15px 70px;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        .options i {
+            width: 25px;
+            position: absolute;
+            top: 16px;
+            left: 25px;
+        }
+
+        .options:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        /* JavaScript */
+        .hide {
+            visibility: hidden;
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+                    
+<body>
+    <header>
+        <div class="selector">
+            <div id="selectField">
+                <p id="selectText">Select Social Media</p>
+                <img src="imges16/arrow.png" id="arrowIcon" />
+            </div>
+            <ul id="list" class="hide">
+                <li class="options">
+                    <i class="fa-brands fa-facebook"></i>
+                    <p>Facebook</p>
+                </li>
+                <li class="options">
+                    <i class="fa-brands fa-instagram"></i>
+                    <p>Instagram</p>
+                </li>
+                <li class="options">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <p>Linkedin</p>
+                </li>
+                <li class="options">
+                    <i class="fa-brands fa-twitter"></i>
+                    <p>Twitter</p>
+                </li>
+                <li class="options">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <p>Whatsapp</p>
+                </li>
+                <li class="options">
+                    <i class="fa-brands fa-youtube"></i>
+                    <p>YouTube</p>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <script>
+        let selectField = document.getElementById("selectField");
+        let selectText = document.getElementById("selectText");
+        let list = document.getElementById("list");
+        let arrowIcon = document.getElementById("arrowIcon");
+        let options = document.getElementsByClassName("options");
+
+        selectField.addEventListener("click", () => {
+            list.classList.toggle("hide");
+            arrowIcon.classList.toggle("rotate");
+        });
+    
+        for (option of options) {
+            option.onclick = function () {
+                selectText.innerHTML = this.textContent;
+                list.classList.toggle("hide");
+                arrowIcon.classList.toggle("rotate");
+            };
+        }
+
+    </script>
+</body>
+
+</html>

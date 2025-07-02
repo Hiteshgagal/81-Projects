@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Clicker Game</title>
+    <style>
+ body {
+  background: black;
+  color: white;
+}
+/* JavaScript */
+.message {
+  text-align: center;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: 50px;
+  left: 20%;
+  background-color: cornsilk;
+  border: 1px solid black;
+  font-size: 1.5em;
+  line-height: 100px;
+}
+    </style>
+  </head>
+  <body>
+    <div class="output"></div>
+
+    <script>
+     
+      const game = { timer: 0, start: null };
+
+      const message = document.createElement("div")
+      message.classList.add("message")
+      message.textContent = "Press To Start"
+      document.body.prepend(message)
+
+      const box  = document.createElement("div")
+      box.classList.add("box")
+
+      const output = document.querySelector(".output")
+      output.append(box)
+
+      box.addEventListener("click", ()=>{
+        box.textContent = ""
+        box.style.display = "none"
+        game.timer= setTimeout(addBox, randomNumbers(3000));
+
+        if(!game.start){
+          message.textContent="Watch for Element and click it"
+        }else{
+           const current = new Date().getTime()
+           const duraction = (current - game.start) / 1000;
+           message.textContent = `It took ${duraction} seconds to click`
+        }
+      })
+
+     function randomNumbers(max){
+          return Math.floor(Math.random()* max)
+     }
+     function addBox(){
+      game.start = new Date().getTime()
+      const container = output.getBoundingClientRect();
+      const dim = [randomNumbers(50)+20, randomNumbers(50)+20]
+      
+      box.style.display="block"
+      box.style.width =  `${dim[0]}px`
+      box.style.height =  `${dim[1]}px`
+      box.style.background = "#" + Math.random().toString(16).substr(-6)
+      box.style.left = randomNumbers(container.width - dim[0]) + "px"
+      box.style.top = randomNumbers(container.height - dim[1]) + "px"
+      box.style.borderRadius = randomNumbers(50)+"%"
+     }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            font-family: sans-serif;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 600px;
+            background-color: rgba(12, 11, 11, 0.786);
+            padding: 4em 5em;
+            border-radius: 10px;
+            height: 65%;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .accordion-item {
+            text-align: center;
+            width: 90%;
+        }
+
+        .accordion-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1em;
+            min-height: 3.5rem;
+            cursor: pointer;
+        }
+
+        .accordion-item-title {
+            color: rgba(255, 255, 255, 0.758);
+            font-size: 1.125rem;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .accordion-item-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-item-body-content {
+            width: 80%;
+            padding-top: 1em;
+            color: #fff;
+            text-align: left;
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            border: 2px solid;
+            width: 34px;
+            height: 34px;
+            color: #f7f8fc;
+            transition: color 0.25s;
+            position: relative;
+            border-radius: 100%;
+        }
+
+        .icon:before {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 2px;
+            background-color: white;
+            border-radius: 20px;
+            pointer-events: all;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .icon:after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 14px;
+            background-color: white;
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* JavaScript */
+        .accordion-item-header.active>.icon::before {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item-header.active>.icon::after {
+            transform: rotate(90deg);
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            margin: 10px 0 10px 0;
+            background-color: #dae1f5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="title">JavaScript</div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                <div class="accordion-item-title">What Is JavaScript</div>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    JavaScript, often abbreviated JS, is a programming language that is
+                    one of the core technologies of the World Wide Web, alongside HTML
+                    and CSS. Over 97% of websites use JavaScript on the client side for
+                    web page behavior, often incorporating third-party libraries.
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                <div class="accordion-item-title">Java & JavaScript</div>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    Key differences between Java and JavaScript: Java is an OOP
+                    programming language while Java Script is an OOP scripting language.
+                    Java creates applications that run in a virtual machine or browser
+                    while JavaScript code is run on a browser only. Java code needs to
+                    be compiled while JavaScript code are all in text.
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                <div class="accordion-item-title">
+                    Can I Learn JavaScript Without Java?
+                </div>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    You do not need to know Java to learn JavaScript. Despite their
+                    names, the two languages have very little in common and are used for
+                    completely different areas of development. You can learn either
+                    language first but learning Java is not a prerequisite to picking up
+                    JavaScript
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                <div class="accordion-item-title">JavaScript & EcmaScript</div>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+                    JavaScript is a general-purpose scripting language that conforms to
+                    the ECMAScript specification. The ECMAScript specification is a
+                    blueprint for creating a scripting language. JavaScript is an
+                    implementation of that blueprint. On the whole, JavaScript
+                    implements the ECMAScript specification as described in ECMA-262.
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+    </div>
+
+    <script>
+     //   const itemHeader = document.querySelector(".accordion-item-header")
+        const itemHeaders = document.querySelectorAll(".accordion-item-header");
+
+ itemHeaders.forEach((accordion) => {
+  accordion.addEventListener("click", collapseAccordions);
+
+  function collapseAccordions() {
+    const activeAccordion = document.querySelector(".active");
+    if (activeAccordion && activeAccordion !== accordion) {
+      activeAccordion.classList.toggle("active");
+      activeAccordion.nextElementSibling.style.maxHeight = 0;
+    }
+
+    accordion.classList.toggle("active");
+    const accordionItemBody = accordion.nextElementSibling;
+
+    if (accordion.classList.contains("active")) {
+      accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+    } else {
+      accordionItemBody.style.maxHeight = 0;
+    }
+  }
+});
+    </script>
+</body>
+
+</html>

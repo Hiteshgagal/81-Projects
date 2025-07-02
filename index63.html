@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabed Navigation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: blueviolet;
+        }
+
+        /* Menu Links Start */
+        .container {
+            width: 90%;
+            margin: auto;
+            position: relative;
+        }
+
+        .tadded-container {
+            position: relative;
+        }
+
+        .tadded-container .menu_Links {
+            position: relative;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .menu_Links ul {
+            list-style: none;
+        }
+
+        .menu_Links ul li {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        @media (max-width: 567px) {
+            .menu_Links ul li {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        .menu_Links ul li:not(:last-child) {
+            margin-right: 30px;
+        }
+
+        .menu_Links ul li.active,
+        .menu_Links ul li.hover {
+            background: rgb(12, 9, 9);
+            color: #fff;
+        }
+
+        /* Menu Links End */
+
+        /* Sections Start */
+        .sections section:not(.visible) {
+            display: none;
+        }
+
+        .sections .visible {
+            animation: feedIn 1s;
+        }
+
+        @keyframes feedIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .sections>section {
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            margin: 60px auto 0;
+            background-color: #f5f7fa;
+            position: relative;
+        }
+
+        .sections .about_section {
+            padding-bottom: 50px;
+        }
+
+        .about_section h2 {
+            padding: 40px;
+            font-weight: bold;
+            font-size: 40px;
+        }
+
+        @media (max-width: 567px) {
+            .about_section h2 {
+                padding: 20px;
+                font-size: 25px;
+            }
+        }
+
+        .about_section img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 567px) {
+            .about_section img {
+                width: 80%;
+                height: 20%;
+                border-radius: 4px;
+            }
+        }
+
+        .about_section h4 {
+            font-weight: 100;
+            padding: 20px;
+        }
+
+        .about_section p {
+            width: 80%;
+            line-height: 1.6;
+            margin-top: 10px;
+            margin: auto;
+            color: #706f6f;
+        }
+
+        @media (max-width: 567px) {
+            .about_section p {
+                width: 100%;
+            }
+        }
+
+        /* End About Section */
+
+        /* Start Of Courses Section */
+        .sections .courses_section {
+            overflow: hidden;
+        }
+
+        .courses_section h2 {
+            padding: 40px;
+            font-weight: bold;
+            font-size: 40px;
+        }
+
+        @media (max-width: 567px) {
+            .courses_section h2 {
+                font-size: 25px;
+                padding: 20px;
+            }
+        }
+
+        .courses_section div {
+            box-shadow: 1px 1px 5px 2px #ccc;
+            text-align: center;
+            width: 45%;
+            padding: 10px;
+            display: inline-block;
+            margin: 0 auto 0 10px;
+            margin: 20px;
+        }
+
+        @media (max-width: 567px) {
+            .courses_section div {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        .courses_section div img {
+            width: 100%;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .courses_section div h4 {
+            padding: 10px;
+        }
+
+        /* End Courses Section */
+        .sections .contact_section {
+            padding-bottom: 50px;
+        }
+
+        .contact_section h2 {
+            padding: 20px 20px 30px 20px;
+        }
+
+        .contact_section .social_Links a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px;
+            transition: 0.5s;
+        }
+
+        .contact_section .social_Links a:hover {
+            opacity: 0.8;
+        }
+
+        .contact_section .social_Links a:first-child {
+            background-color: #1da1f2;
+        }
+
+        .contact_section .social_Links a:nth-child(2) {
+            background-color: #e84a5f;
+        }
+
+        .contact_section .social_Links a:nth-child(3) {
+            background-color: blueviolet;
+        }
+
+        .contact_section .social_Links a:nth-child(4) {
+            background-color: crimson;
+        }
+
+        .contact_section .social_Links a:last-child {
+            background-color: #2a363b;
+        }
+
+        @media (max-width: 567px) {
+            .contact_section .social_Links a {
+                display: block;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tadded-container">
+        <div class="container">
+            <div class="menu_Links">
+                <ul>
+                    <li class="active">About</li>
+                    <li>Courses</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+
+            <div class="sections">
+                <section class="about_section visible" data-section="About">
+                    <h2>About Me</h2>
+                    <img src="https://avatars.githubusercontent.com/u/85052811?v=4" alt="About Image" />
+                    <h4>HuXn WebDev</h4>
+                    <p>
+                        I am HuXn Web Developer, I've worked with lot's of popular &
+                        unpopular technologies, frameworks & libraries like react, angular
+                        vue & dozens of more & not just frameworks & libraries but also
+                        different programming languages like Python, JavaScript, Golang,
+                        Java, C, C++, etc. build countless projects in different
+                        technologies & frameworks, I started programming at the age of 10,
+                        Now I know enough to teach programming online, I enjoy teaching
+                        others how to code and solve their problems, that's why I created
+                        YouTube channel (HuXn WebDev) where I share all of my knowledge
+                        with the world.
+                    </p>
+                </section>
+
+                <section class="courses_section" data-section="Courses">
+                    <h2>COURSES</h2>
+                    <a href="https://www.youtube.com/playlist?list=PLSDeUiTMfxW41HftXEup62r1zq5I1KosE">
+                        <div class="team_box">
+                            <img src="img63/html.png" />
+                            <h4>HTML COMPLETE GUIDE</h4>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLSDeUiTMfxW41HftXEup62r1zq5I1KosE">
+                        <div class="team_box">
+                            <img src="img63/css.png" />
+                            <h4>CSS COMPLETE GUIDE</h4>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLSDeUiTMfxW5iYhG1Hv4JKQL0Rzylb76p">
+                        <div class="team_box">
+                            <img src="img63/js.png" />
+                            <h4>NEXT LEVEL JAVASCRIPT</h4>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLSDeUiTMfxW7sbxhTa8vJZ9xyKret_RiN">
+                        <div class="team_box">
+                            <img src="img63/vscode.png" />
+                            <h4>VSCODE COMPLETE GUIDE</h4>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLSDeUiTMfxW5MYRChTYlqKwgXE289Flok">
+                        <div class="team_box">
+                            <img src="img63/git and github.png" />
+                            <h4>GIT AND GITHUB COMPLETE GUDIE</h4>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLSDeUiTMfxW5oeotfGiqAZC0LDQ9Y-Q52">
+                        <div class="team_box">
+                            <img src="img63/go.png" />
+                            <h4>GOLANG COMPLETE GUIDE</h4>
+                        </div>
+                    </a>
+                </section>
+
+                <section class="contact_section" data-section="Contact">
+                    <h2>Contact</h2>
+                    <div class="social_Links">
+                        <a href="https://www.youtube.com/channel/UCbBt6Ks7M5BZx_GHgGO_UNQ">YouTube</a>
+                        <a href="https://twitter.com/AcademyWebdev">Twitter</a>
+                        <a href="https://www.udemy.com/user/huxn-webdev/">Udemy</a>
+                        <a href="https://www.instagram.com/huxn_webdev/">Instagram</a>
+                        <a href="https://github.com/huxn-webdev">Github</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let menu_lis = document.querySelectorAll(".menu_Links ul li");
+
+        menu_lis.forEach((li) => {
+            li.addEventListener("click", (e) => {
+                document.querySelectorAll(".menu_Links ul li.active").forEach((activeEle) => {
+                    activeEle.classList.remove("active");
+                });
+
+                e.target.classList.add("active");
+
+                document.querySelectorAll(".sections > section").forEach((section) => {
+                    if (e.target.textContent === section.dataset.section) {
+                        document.querySelectorAll(".sections .visible").forEach((ele) => {
+                            ele.classList.remove("visible");
+                        });
+                        section.classList.add("visible");
+                    }
+                });
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

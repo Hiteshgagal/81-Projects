@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ddd;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quote-container {
+            padding: 5rem;
+            position: relative;
+        }
+
+        #quoteOutput {
+            font-family: sans-serif;
+            letter-spacing: 2px;
+            line-height: 50px;
+            font-size: 2rem;
+            margin-top: 2rem;
+            width: 800px;
+        }
+
+        #authorOutput {
+            position: relative;
+            margin-top: 5rem;
+            text-align: right;
+            font-family: sans-serif;
+            font-size: 1.2rem;
+        }
+
+        span,
+        small {
+            animation: anime 1s ease-out;
+        }
+
+        .btn {
+            padding: 10px 30px;
+            background-color: #fdbb11;
+            border: none;
+            cursor: pointer;
+        }
+
+        @keyframes anime {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quote-container">
+        <div id="quoteOutput">
+            <span>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis
+                quis suscipit qui molestiae vel error repellat cumque rem ipsam
+                recusandae! Facilis repudiandae qui libero asperiores voluptatem, vel
+                sed natus a!
+            </span>
+        </div>
+        <div id="authorOutput">
+            <small>-Author-</small>
+        </div>
+    </div>
+
+    <button class="btn" id="quoteBtn">Get Quote</button>
+
+    <script>
+        const generateQuoteBtn = document.getElementById("quoteBtn");
+        const quoteOutput = document.getElementById("quoteOutput");
+        const authorOutput = document.getElementById("authorOutput");
+
+
+        generateQuoteBtn.addEventListener("click", ()=>{
+            generateQuote()
+        })
+        //information Array
+        const arrayOfQuotes = [
+            {
+                author: "Albert Einstein",
+                quote:
+                    "We cannot solve problems with the kind of thinking we employed when we came up with them",
+            },
+            {
+                author: " Mark Twain",
+                quote:
+                    "Stay away from those people who try to disparage your ambitions. Small minds will always do that, but great minds will give you a feeling that you can become great too.",
+            },
+            {
+                author: "Eleanor",
+                quote:
+                    "When you give joy to other people, you get more joy in return. You should give a good thought to happiness that you can give out.",
+            },
+            {
+                author: "Norman Vincent Peale",
+                quote: "When you change your thoughts, remember to also change your world.",
+            },
+            {
+                author: "Walter",
+                quote:
+                    "It is only when we take chances, when our lives improve. The initial and the most difficult risk that we need to take is to become honest. ",
+            },
+            {
+                author: "Diane McLaren",
+                quote:
+                    "Nature has given us all the pieces required to achieve exceptional wellness and health, but has left it to us to put these pieces together.",
+            },
+            {
+                author: "Dale Carnegie",
+                quote:
+                    "Develop success from failures. Discouragement and failure are two of the surest stepping stones to success.",
+            },
+        ];
+
+        function generateQuote() {
+            let random = Number.parseInt(Math.random() * arrayOfQuotes.length + 1)
+            quoteOutput.innerHTML = `<span>${arrayOfQuotes[random].quote}</span>`
+            authorOutput.innerHTML = `<small>-${arrayOfQuotes[random].author}-</small>`
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

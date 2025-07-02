@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Cat Images</title>
+    <style>
+        body {
+            background: rgb(17, 17, 17);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .btn {
+            background: transparent;
+            border: none;
+            background-color: rgb(216, 34, 74);
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* JavaScript */
+        .cats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .random_cats {
+            width: 40%;
+        }
+
+        img {
+            max-width: 700px;
+            height: 30rem;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header-content">
+        <button class="btn">Get Random Cat</button>
+    </section>
+
+    <div class="container"></div>
+
+    <script>
+        const url = "https://api.thecatapi.com/v1/images/search";
+        const section = document.querySelector(".container");
+        const button = document.querySelector(".btn");
+
+        button.addEventListener("click", getRandomCats)
+
+        randomCatsPhoto = (json)=>{
+            let photo = json[0].url;
+            section.classList.add("cats")
+
+            let images= document.createElement("img")
+            images.src = photo;
+            images.alt = photo;
+            section.appendChild(images)
+        }
+        async function getRandomCats() {
+            section.innerHTML=""
+            try{
+                const response = await fetch(url)
+                const json = await response.json()
+                console.log("JSON", json)
+                return randomCatsPhoto(json)
+            }
+            catch(e){
+                console.log("This is an error");
+                console.log(e);
+            }
+            
+        }
+    </script>
+
+</body>
+
+</html>

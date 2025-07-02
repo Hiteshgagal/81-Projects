@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>read More / Read Less</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: blanchedalmond;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 70px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            width: 50%;
+        }
+
+        header h2 {
+            font-size: 1.4rem;
+        }
+
+        .para {
+            margin-top: 12px;
+            font-size: 18px;
+        }
+
+        .para .content-container-2 {
+            display: none;
+        }
+
+        .btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 45px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+
+        }
+
+        .content-container-2.toggle {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>Welcome To The Real World</h2>
+            <p class="para">
+                <span class="content-container-1">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum eius delectus tempora dolore, eum
+                    voluptatibus itaque iusto reprehenderit adipisci voluptatem repellat! Explicabo, odio! Voluptatibus,
+                    ipsam autem fugit aliquam eum excepturi...
+                </span>
+            </p>
+            <p class="para">
+                <span class="content-container-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum eius delectus tempora dolore, eum
+                    voluptatibus itaque iusto reprehenderit adipisci voluptatem repellat! Explicabo, odio! Voluptatibus,
+                    ipsam autem fugit aliquam eum excepturi...
+                </span>
+                <button class="btn"> Learn More</button>
+            </p>
+        </header>
+    </div>
+    <script>
+        contentCon = document.querySelector(".content-container-2")
+        button = document.querySelector('.btn')
+        button.addEventListener("click", () =>{
+            button.innerText="Read Less"
+            contentCon.classList.toggle("toggle")})
+    </script>
+</body>
+
+</html>

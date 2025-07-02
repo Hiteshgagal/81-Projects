@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Images</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        button {
+            margin-right: -20px;
+            padding: 15px 40px;
+            border: 0;
+            outline: none;
+            border-radius: 25px;
+            background: #333;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .col-1 .col2 {
+            overflow: hidden;
+        }
+
+        .col-1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .col-2 img {
+            width: 35rem;
+            height: 100vh;
+            margin-bottom: -5px;
+        }
+
+        .col-1 {
+            padding: 8% 5%;
+            position: relative;
+        }
+
+        .col-1 p {
+            color: #777;
+            line-height: 22px;
+            margin: 15px 0 30px;
+            max-width: 500px;
+        }
+
+        ul {
+            position: absolute;
+            bottom: 30px;
+        }
+
+        ul li {
+            list-style: none;
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            background: #bfbfbf;
+            border-radius: 50%;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        ul .active {
+            background: #333;
+        }
+
+        /* JavaScript */
+        .zoom {
+            animation: zoom 1s;
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <h1>Explore Best Properties</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+                    saepe voluptatem iusto cupiditate iure qui quas natus facere
+                    voluptates. Recusandae dicta quae doloribus repellat. A
+                    reprehenderit mollitia incidunt vitae nihil.
+                </p>
+                <button>More Properties</button>
+
+                <ul>
+                    <li class="btn active"></li>
+                    <li class="btn"></li>
+                    <li class="btn"></li>
+                </ul>
+            </div>
+
+            <div class="col-2">
+                <img src="img70/0.jpg" id="banner" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let btns = document.querySelectorAll(".btn");
+        let banner = document.getElementById("banner");
+
+        btns.forEach((btn, index)=>{
+            btn.addEventListener("click", ()=>{
+               banner.src = `img70/${index}.jpg`
+               animation()
+               btn.classList.add("active")
+            })
+        })
+        function animation(){
+            banner.classList.add("zoom")
+            setTimeout(() => {
+                banner.classList.remove("zoom")
+            }, 1000);
+        
+        for (const b of btns) {
+            b.classList.remove("active")
+        }
+    }
+    </script>
+
+</body>
+
+</html>

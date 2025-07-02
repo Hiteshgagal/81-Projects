@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Toggler</title>
+    <style>
+        :root{
+            --primary-color:white;
+            --primary-label: black;
+            --secondary-label:white;
+            --white-ball:white;
+            --black-ball:black;
+        }
+
+        body{
+            background: var(--primary-color);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #switch{
+            width: 0;
+            height: 0;
+            visibility: hidden;
+        }
+        label{
+            display: block;
+            width: 100px;
+            height: 50px;
+            background-color: var(--primary-label);
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        label::after{
+            content: "";
+            width: 40px;
+            height: 40px;
+            border-radius: 70px;
+            background-color: var(--white-ball);
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            transition: 0.5s;
+        }
+        #switch:checked + label{
+            background-color: var(--secondary-label);
+        }
+        #switch:checked + label:after{
+            background-color: var(--black-ball);
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label:active:active{
+            width: 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="switch">
+    <label for="switch"></label>
+     <script>
+       let toggeler= document.getElementById("switch")
+
+       toggeler.addEventListener("click", ()=>{
+        if(toggeler.checked === true){
+            document.body.style.background = "black"
+        }else{
+            document.body.style.background = "white"
+        }
+       })
+     </script>
+</body>
+</html>

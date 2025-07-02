@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            margin: 25px;
+            padding: 25px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            line-height: 1.4;
+            box-shadow: 2px 1px 5px 1px;
+        }
+
+        .title {
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .text-input {
+            width: 100%;
+            height: 225px;
+            margin-bottom: 25px;
+            resize: none;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <h2 class="title">Word Counter</h2>
+        <textarea class="text-input" placeholder="Paste text here..."></textarea>
+        <section>
+            <strong>Word Count: </strong>
+            <span class="word-count">0</span>
+        </section>
+        <section>
+            <strong>Letter Count: </strong>
+            <span class="letter-count">0</span>
+        </section>
+        <section>
+            <strong>Number Of Spaces: </strong>
+            <span class="space-count">0</span>
+        </section>
+    </section>
+
+    <script>
+        const textInput = document.querySelector(".text-input");
+        const worldCountElement = document.querySelector(".word-count");
+        const letterCountElement = document.querySelector(".letter-count");
+        const spaceCountElement = document.querySelector(".space-count");
+
+        const checks = [atLeastTwoCharacters, abscenceOfThreeConsecutiveCharacters];
+
+        function atLeastTwoCharacters(text) {
+            const letters = text.match(/[a-z]/gi) || [];
+            return letters.length >= 2;
+        }
+
+        function abscenceOfThreeConsecutiveCharacters(text) {
+            for (const character of text) {
+                const occurrences = Array.from(text).filter((v) => v == character).length;
+
+                if (occurrences >= 3) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        textInput.addEventListener("input", () => {
+            const splitted = textInput.value.trim().split(/[\s-]/);
+            const letterCount = (textInput.value.match(/[a-z]/gi) || []).length;
+            const spaceCount = (textInput.value.match(/\s+/g) || []).length;
+            let wordCount = 0;
+
+            outer: for (const text of splitted) {
+                for (const check of checks) {
+                    if (!check(text)) {
+                        continue outer;
+                    }
+                }
+                wordCount++;
+            }
+
+            worldCountElement.textContent = wordCount;
+            letterCountElement.textContent = letterCount;
+            spaceCountElement.textContent = spaceCount;
+        });
+
+
+    </script>
+</body>
+
+</html>
